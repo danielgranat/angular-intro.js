@@ -21,7 +21,9 @@
 		     ng-intro-oncomplete="CompletedEvent" ng-intro-onexit="ExitEvent"
 		     ng-intro-onchange="ChangeEvent" ng-intro-onbeforechange="BeforeChangeEvent"
 		     ng-intro-onafterchange="AfterChangeEvent"
-		     ng-intro-autostart="ShouldAutoStart()">
+		     ng-intro-autostart="ShouldAutoStart()"
+		     ng-intro-next="NextStep"
+		     ng-intro-exit="StopIntro" >
 
 		    <div class="masthead">
 		        <ul id="step5" class="nav nav-pills pull-right">
@@ -46,8 +48,19 @@
 		            <h4>Options</h4>
 		            <p>Set the options like so: <code>ng-intro-options="IntroOptions"</code>. Define <code>$scope.IntroOptions</code> in your controller.  The format is exactly the same as the <a href="https://github.com/usablica/intro.js#options">original</a>.</p>
 
-		            <h4>Method name</h4>
-		            <p>Pick a method name, <code>ng-intro-method="CallMe"</code>. You can invoke the intro from elsewhere by calling <code>CallMe();</code>.  You can also specify a step number using <code>CallMe(3);</code>. To autostart, use <code>ng-intro-autostart="true"</code></p>
+		            <h4>Method names</h4>
+		            <p>Pick a method name, <code>ng-intro-method="CallMe"</code>. You can invoke the intro from elsewhere by calling <code>CallMe();</code>.  You can also specify a step number using <code>CallMe(3);</code>. To autostart, use <code>ng-intro-autostart="true"</code>
+		            </p>
+		            <p>Aditional methods enable controlling the intro programaticaly.
+		            <br/>
+		            Advance to next step<code>ng-intro-next="NextStep"</code> will enable calling <code>NextStep();</code>
+		            <br/>
+		            <a href="" ng-click="NextStep();">next</a>
+		            <br/>
+		            Stop intro<code>ng-intro-exit="StopIntro"</code> will enable calling <code>StopIntro();</code>
+		            <br/>
+		            <a href="" ng-click="StopIntro();">stop</a>
+		            </p>
 
 		            <h4>Callbacks</h4>
 		            <p>You can get callbacks to your controller using the <code>ng-intro-oncomplete</code>, <code>ng-intro-onexit</code>, <code>ng-intro-onchange</code>, <code>ng-intro-onbeforechange</code> and <code>ng-intro-onafterchange</code> directives.</p>

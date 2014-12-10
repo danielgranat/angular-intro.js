@@ -7,6 +7,8 @@ ngIntroDirective.directive('ngIntroOptions', ['$timeout', function ($timeout) {
         restrict: 'A',
         scope: {
             ngIntroMethod: "=",
+            ngIntroExit: "=",
+            ngIntroNext: "=",
             ngIntroOptions: '=',
             ngIntroOncomplete: '=',
             ngIntroOnexit: '=',
@@ -17,6 +19,19 @@ ngIntroDirective.directive('ngIntroOptions', ['$timeout', function ($timeout) {
             ngIntroAutorefresh: '='
         },
         link: function(scope, element, attrs) {
+            
+            scope.ngIntroExit = function(){
+                if(scope.internalIntroExit){
+                    scope.internalIntroExit();
+                }
+            }
+
+            scope.ngIntroNext = function(){
+                if(scope.internalIntroNext){
+                    scope.internalIntroNext();
+                }
+            }
+
             scope.ngIntroMethod = function(step) {
 
                 var intro;
@@ -35,6 +50,19 @@ ngIntroDirective.directive('ngIntroOptions', ['$timeout', function ($timeout) {
                     intro.refresh();
                   });
                 }
+
+                if(scope.ngIntroExit){
+                    scope.internalIntroExit = function(){
+                        intro.exit();
+                    }
+                }
+
+                if(scope.ngIntroNext){
+                    scope.internalIntroNext = function(){
+                        intro.nextStep();
+                    }
+                }
+                
                 
                 if (scope.ngIntroOncomplete) {
                     intro.oncomplete(function() {
